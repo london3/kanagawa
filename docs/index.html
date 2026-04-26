@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神奈川県ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>神奈川県ダッシュボード</h1>
+    <p class="subtitle">e-Stat APIによる主要統計の自動集計 / Last updated: <strong>2026-04-26 23:01 JST</strong></p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="kpis">
+    
+    <div class="kpi-card">
+      <div class="kpi-label">総人口(神奈川県)</div>
+      <div class="kpi-value">9.22<span class="kpi-unit"> 百万人</span></div>
+      <div class="kpi-meta">2024年10月1日現在</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">男性人口(神奈川県)</div>
+      <div class="kpi-value">4.58<span class="kpi-unit"> 百万人</span></div>
+      <div class="kpi-meta">2024年10月1日現在</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">女性人口(神奈川県)</div>
+      <div class="kpi-value">4.65<span class="kpi-unit"> 百万人</span></div>
+      <div class="kpi-meta">2024年10月1日現在</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">出生数(神奈川県)</div>
+      <div class="kpi-value">51,423<span class="kpi-unit"> 人</span></div>
+      <div class="kpi-meta">2024年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">死亡数(神奈川県)</div>
+      <div class="kpi-value">102,079<span class="kpi-unit"> 人</span></div>
+      <div class="kpi-meta">2024年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">自然死産数(神奈川県)</div>
+      <div class="kpi-value">483.0<span class="kpi-unit"> 人</span></div>
+      <div class="kpi-meta">2024年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">周産期死亡数(神奈川県)</div>
+      <div class="kpi-value">151.0<span class="kpi-unit"> 人</span></div>
+      <div class="kpi-meta">2024年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">転入者数(神奈川県・月次)</div>
+      <div class="kpi-value">25,584<span class="kpi-unit"> 人</span></div>
+      <div class="kpi-meta">2026年3月</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">事業所数(神奈川県・2012年)</div>
+      <div class="kpi-value">290,603<span class="kpi-unit"> 事業所</span></div>
+      <div class="kpi-meta">2012年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">従業者数(神奈川県・2012年)</div>
+      <div class="kpi-value">3,371<span class="kpi-unit"> 千人</span></div>
+      <div class="kpi-meta">2012年</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="kpi-label">1km²当たり事業所数(神奈川県・2012年)</div>
+      <div class="kpi-value">120.3<span class="kpi-unit"> 事業所/km²</span></div>
+      <div class="kpi-meta">2012年</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="category-section">
+    <h2>人口</h2>
+    <div class="chart-grid">
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>総人口(神奈川県)</h3>
+          <p class="chart-desc">人口推計(年次)、男女計・総人口</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-population_total"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003448231" target="_blank" rel="noopener">総務省統計局 人口推計</a></span>
+          <span class="chart-updated">更新: 2025-10-03</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>男性人口(神奈川県)</h3>
+          <p class="chart-desc">人口推計(年次)、男性・総人口</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-population_male"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003448231" target="_blank" rel="noopener">総務省統計局 人口推計</a></span>
+          <span class="chart-updated">更新: 2025-10-03</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>女性人口(神奈川県)</h3>
+          <p class="chart-desc">人口推計(年次)、女性・総人口</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-population_female"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003448231" target="_blank" rel="noopener">総務省統計局 人口推計</a></span>
+          <span class="chart-updated">更新: 2025-10-03</span>
+        </footer>
+      </div>
+      
+    </div>
+  </section>
+  
+  <section class="category-section">
+    <h2>人口動態</h2>
+    <div class="chart-grid">
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>出生数(神奈川県)</h3>
+          <p class="chart-desc">人口動態調査(年次)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-births"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003411564" target="_blank" rel="noopener">厚生労働省 人口動態調査</a></span>
+          <span class="chart-updated">更新: 2026-03-17</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>死亡数(神奈川県)</h3>
+          <p class="chart-desc">人口動態調査(年次)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-deaths"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003411564" target="_blank" rel="noopener">厚生労働省 人口動態調査</a></span>
+          <span class="chart-updated">更新: 2026-03-17</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>自然死産数(神奈川県)</h3>
+          <p class="chart-desc">人口動態調査(年次)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-stillbirths"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003411564" target="_blank" rel="noopener">厚生労働省 人口動態調査</a></span>
+          <span class="chart-updated">更新: 2026-03-17</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>周産期死亡数(神奈川県)</h3>
+          <p class="chart-desc">人口動態調査(年次)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-perinatal_deaths"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003411564" target="_blank" rel="noopener">厚生労働省 人口動態調査</a></span>
+          <span class="chart-updated">更新: 2026-03-17</span>
+        </footer>
+      </div>
+      
+    </div>
+  </section>
+  
+  <section class="category-section">
+    <h2>人口移動</h2>
+    <div class="chart-grid">
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>転入者数(神奈川県・月次)</h3>
+          <p class="chart-desc">他都道府県からの転入者数(住基ベース、月次)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-migration_in"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003420473" target="_blank" rel="noopener">総務省統計局 住民基本台帳人口移動報告</a></span>
+          <span class="chart-updated">更新: 2026-04-23</span>
+        </footer>
+      </div>
+      
+    </div>
+  </section>
+  
+  <section class="category-section">
+    <h2>事業者</h2>
+    <div class="chart-grid">
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>事業所数(神奈川県・2012年)</h3>
+          <p class="chart-desc">経済センサス‐活動調査(全産業、神奈川県全域)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-business_establishments"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003085552" target="_blank" rel="noopener">総務省・経済産業省 経済センサス活動調査</a></span>
+          <span class="chart-updated">更新: 2026-01-16</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>従業者数(神奈川県・2012年)</h3>
+          <p class="chart-desc">経済センサス‐活動調査(従業者数 総数、神奈川県全域)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-business_employees"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003085552" target="_blank" rel="noopener">総務省・経済産業省 経済センサス活動調査</a></span>
+          <span class="chart-updated">更新: 2026-01-16</span>
+        </footer>
+      </div>
+      
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>1km²当たり事業所数(神奈川県・2012年)</h3>
+          <p class="chart-desc">経済センサス‐活動調査(密度指標)</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-business_density"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="https://www.e-stat.go.jp/dbview?sid=0003085552" target="_blank" rel="noopener">総務省・経済産業省 経済センサス活動調査</a></span>
+          <span class="chart-updated">更新: 2026-01-16</span>
+        </footer>
+      </div>
+      
+    </div>
+  </section>
+  
+
+  
+
+  <section class="links-section">
+    <h2>関連リンク</h2>
+    <ul class="links-list">
+      
+      <li>
+        <a href="https://www.pref.kanagawa.jp/docs/x6z/index.html" target="_blank" rel="noopener">神奈川県統計センター</a>
+        <span class="link-desc">神奈川県の統計情報ポータル</span>
+      </li>
+      
+      <li>
+        <a href="https://www.pref.kanagawa.jp/docs/x6t/index.html" target="_blank" rel="noopener">神奈川県の人口と世帯(月次)</a>
+        <span class="link-desc">神奈川県人口統計調査</span>
+      </li>
+      
+      <li>
+        <a href="https://www.pref.kanagawa.jp/docs/x6z/cnt/f7022/index.html" target="_blank" rel="noopener">神奈川県県民経済計算</a>
+        <span class="link-desc">神奈川県の県内総生産・県民所得</span>
+      </li>
+      
+      <li>
+        <a href="https://www.pref.kanagawa.jp/docs/x6z/cnt/f534984/index.html" target="_blank" rel="noopener">神奈川県の事業所(経済センサス)</a>
+        <span class="link-desc">経済センサスの神奈川県結果</span>
+      </li>
+      
+      <li>
+        <a href="https://jsite.mhlw.go.jp/kanagawa-roudou/" target="_blank" rel="noopener">神奈川労働局 雇用統計</a>
+        <span class="link-desc">有効求人倍率・雇用情勢</span>
+      </li>
+      
+      <li>
+        <a href="https://www.city.yokohama.lg.jp/city-info/yokohamashi/tokei-chosa/" target="_blank" rel="noopener">横浜市の統計</a>
+        <span class="link-desc">横浜市の統計データ</span>
+      </li>
+      
+      <li>
+        <a href="https://www.city.kawasaki.jp/170/page/0000005903.html" target="_blank" rel="noopener">川崎市の統計情報</a>
+        <span class="link-desc">川崎市の統計データ</span>
+      </li>
+      
+      <li>
+        <a href="https://www.e-stat.go.jp/" target="_blank" rel="noopener">e-Stat 政府統計の総合窓口</a>
+        <span class="link-desc">全統計のメタデータ・データダウンロード</span>
+      </li>
+      
+      <li>
+        <a href="https://resas.go.jp/" target="_blank" rel="noopener">RESAS(地域経済分析システム)</a>
+        <span class="link-desc">地域経済の可視化ツール(神奈川県/市区町村別)</span>
+      </li>
+      
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>データ: e-Stat政府統計の総合窓口、神奈川県統計センター 他 / 自動更新: 毎月1日</p>
+    <p>本ページの数値はAPI取得時点のものです。最新の正確な値は各出典でご確認ください。</p>
+  </div>
+</footer>
+
+<script>
+const CHART_DATA = {"population_total": {"labels": ["2021年10月1日現在", "2022年10月1日現在", "2023年10月1日現在", "2024年10月1日現在"], "values": [9.236, 9.232, 9.229000000000001, 9.225], "name": "総人口(神奈川県)", "chart": "line", "unit": "百万人"}, "population_male": {"labels": ["2021年10月1日現在", "2022年10月1日現在", "2023年10月1日現在", "2024年10月1日現在"], "values": [4.5840000000000005, 4.579, 4.578, 4.5760000000000005], "name": "男性人口(神奈川県)", "chart": "line", "unit": "百万人"}, "population_female": {"labels": ["2021年10月1日現在", "2022年10月1日現在", "2023年10月1日現在", "2024年10月1日現在"], "values": [4.652, 4.6530000000000005, 4.651, 4.649], "name": "女性人口(神奈川県)", "chart": "line", "unit": "百万人"}, "births": {"labels": ["2015年", "2016年", "2017年", "2018年", "2019年", "2020年", "2021年", "2022年", "2023年", "2024年"], "values": [73476.0, 70649.0, 68133.0, 66564.0, 63035.0, 60865.0, 58836.0, 56498.0, 53991.0, 51423.0], "name": "出生数(神奈川県)", "chart": "bar", "unit": "人"}, "deaths": {"labels": ["2015年", "2016年", "2017年", "2018年", "2019年", "2020年", "2021年", "2022年", "2023年", "2024年"], "values": [75765.0, 77363.0, 80354.0, 82336.0, 83968.0, 84601.0, 89701.0, 98821.0, 98744.0, 102079.0], "name": "死亡数(神奈川県)", "chart": "bar", "unit": "人"}, "stillbirths": {"labels": ["2015年", "2016年", "2017年", "2018年", "2019年", "2020年", "2021年", "2022年", "2023年", "2024年"], "values": [749.0, 665.0, 673.0, 639.0, 656.0, 574.0, 598.0, 529.0, 501.0, 483.0], "name": "自然死産数(神奈川県)", "chart": "bar", "unit": "人"}, "perinatal_deaths": {"labels": ["2015年", "2016年", "2017年", "2018年", "2019年", "2020年", "2021年", "2022年", "2023年", "2024年"], "values": [290.0, 258.0, 259.0, 224.0, 226.0, 200.0, 196.0, 209.0, 194.0, 151.0], "name": "周産期死亡数(神奈川県)", "chart": "bar", "unit": "人"}, "migration_in": {"labels": ["2013年7月", "2013年8月", "2013年9月", "2013年10月", "2013年11月", "2013年12月", "2014年1月", "2014年2月", "2014年3月", "2014年4月", "2014年5月", "2014年6月", "2014年7月", "2014年8月", "2014年9月", "2014年10月", "2014年11月", "2014年12月", "2015年1月", "2015年2月", "2015年3月", "2015年4月", "2015年5月", "2015年6月", "2015年7月", "2015年8月", "2015年9月", "2015年10月", "2015年11月", "2015年12月", "2016年1月", "2016年2月", "2016年3月", "2016年4月", "2016年5月", "2016年6月", "2016年7月", "2016年8月", "2016年9月", "2016年10月", "2016年11月", "2016年12月", "2017年1月", "2017年2月", "2017年3月", "2017年4月", "2017年5月", "2017年6月", "2017年7月", "2017年8月", "2017年9月", "2017年10月", "2017年11月", "2017年12月", "2018年1月", "2018年2月", "2018年3月", "2018年4月", "2018年5月", "2018年6月", "2018年7月", "2018年8月", "2018年9月", "2018年10月", "2018年11月", "2018年12月", "2019年1月", "2019年2月", "2019年3月", "2019年4月", "2019年5月", "2019年6月", "2019年7月", "2019年8月", "2019年9月", "2019年10月", "2019年11月", "2019年12月", "2020年1月", "2020年2月", "2020年3月", "2020年4月", "2020年5月", "2020年6月", "2020年7月", "2020年8月", "2020年9月", "2020年10月", "2020年11月", "2020年12月", "2021年1月", "2021年2月", "2021年3月", "2021年4月", "2021年5月", "2021年6月", "2021年7月", "2021年8月", "2021年9月", "2021年10月", "2021年11月", "2021年12月", "2022年1月", "2022年2月", "2022年3月", "2022年4月", "2022年5月", "2022年6月", "2022年7月", "2022年8月", "2022年9月", "2022年10月", "2022年11月", "2022年12月", "2023年1月", "2023年2月", "2023年3月", "2023年4月", "2023年5月", "2023年6月", "2023年7月", "2023年8月", "2023年9月", "2023年10月", "2023年11月", "2023年12月", "2024年1月", "2024年2月", "2024年3月", "2024年4月", "2024年5月", "2024年6月", "2024年7月", "2024年8月", "2024年9月", "2024年10月", "2024年11月", "2024年12月", "2025年1月", "2025年2月", "2025年3月", "2025年4月", "2025年5月", "2025年6月", "2025年7月", "2025年8月", "2025年9月", "2025年10月", "2025年11月", "2025年12月", "2026年1月", "2026年2月", "2026年3月"], "values": [18373.0, 17760.0, 16719.0, 18719.0, 17566.0, 17559.0, 14891.0, 17192.0, 29623.0, 22939.0, 16547.0, 15994.0, 17201.0, 16062.0, 17044.0, 17760.0, 15253.0, 17717.0, 14955.0, 17600.0, 30821.0, 23485.0, 16295.0, 17827.0, 17455.0, 17079.0, 18425.0, 18793.0, 16860.0, 17778.0, 14737.0, 18254.0, 28859.0, 21183.0, 17791.0, 16664.0, 16204.0, 17639.0, 15361.0, 16267.0, 17076.0, 17631.0, 15232.0, 17393.0, 30989.0, 21495.0, 18579.0, 17016.0, 16573.0, 17195.0, 15916.0, 17427.0, 16819.0, 16732.0, 15265.0, 18154.0, 29111.0, 21727.0, 18800.0, 16470.0, 17813.0, 17271.0, 14923.0, 18762.0, 17110.0, 17009.0, 15239.0, 17460.0, 27695.0, 22704.0, 18631.0, 16108.0, 18540.0, 17089.0, 16917.0, 18011.0, 16108.0, 17406.0, 14795.0, 17369.0, 28583.0, 24540.0, 14133.0, 15909.0, 17714.0, 17729.0, 17479.0, 17621.0, 17573.0, 18100.0, 15012.0, 18379.0, 29724.0, 22355.0, 16653.0, 17953.0, 17105.0, 17587.0, 16280.0, 17221.0, 17978.0, 18244.0, 14878.0, 16803.0, 28158.0, 20738.0, 18436.0, 17109.0, 16430.0, 18384.0, 16893.0, 16829.0, 16809.0, 16942.0, 14714.0, 16768.0, 27905.0, 20321.0, 18380.0, 17105.0, 16658.0, 17513.0, 15474.0, 17328.0, 16870.0, 17705.0, 14358.0, 16541.0, 24839.0, 21455.0, 17591.0, 15572.0, 18370.0, 16074.0, 15649.0, 17732.0, 16266.0, 17507.0, 15045.0, 16937.0, 25331.0, 20775.0, 16920.0, 17517.0, 18141.0, 15906.0, 16687.0, 17924.0, 15204.0, 17596.0, 14509.0, 16889.0, 25584.0], "name": "転入者数(神奈川県・月次)", "chart": "line", "unit": "人"}, "business_establishments": {"labels": ["2012年"], "values": [290603.0], "name": "事業所数(神奈川県・2012年)", "chart": "bar", "unit": "事業所"}, "business_employees": {"labels": ["2012年"], "values": [3370.7400000000002], "name": "従業者数(神奈川県・2012年)", "chart": "bar", "unit": "千人"}, "business_density": {"labels": ["2012年"], "values": [120.3], "name": "1km²当たり事業所数(神奈川県・2012年)", "chart": "bar", "unit": "事業所/km²"}};
+
+function buildChart(id, payload) {
+  const ctx = document.getElementById('chart-' + id);
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: payload.chart || 'line',
+    data: {
+      labels: payload.labels,
+      datasets: [{
+        label: payload.name,
+        data: payload.values,
+        borderColor: '#0a4f8c',
+        backgroundColor: payload.chart === 'bar' ? 'rgba(10,79,140,0.6)' : 'rgba(10,79,140,0.12)',
+        borderWidth: 2,
+        tension: 0.2,
+        pointRadius: payload.values.length > 30 ? 0 : 2,
+        fill: payload.chart !== 'bar',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => c.formattedValue + ' ' + (payload.unit || '')
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
+        y: { ticks: { callback: (v) => v.toLocaleString() } }
+      }
+    }
+  });
+}
+
+Object.entries(CHART_DATA).forEach(([id, payload]) => buildChart(id, payload));
+</script>
+</body>
+</html>

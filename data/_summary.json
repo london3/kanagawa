@@ -1,0 +1,79 @@
+[
+  {
+    "id": "population_total",
+    "name": "総人口(神奈川県)",
+    "category": "人口",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "population_male",
+    "name": "男性人口(神奈川県)",
+    "category": "人口",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "population_female",
+    "name": "女性人口(神奈川県)",
+    "category": "人口",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "births",
+    "name": "出生数(神奈川県)",
+    "category": "人口動態",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "deaths",
+    "name": "死亡数(神奈川県)",
+    "category": "人口動態",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "stillbirths",
+    "name": "自然死産数(神奈川県)",
+    "category": "人口動態",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "perinatal_deaths",
+    "name": "周産期死亡数(神奈川県)",
+    "category": "人口動態",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "migration_in",
+    "name": "転入者数(神奈川県・月次)",
+    "category": "人口移動",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "business_establishments",
+    "name": "事業所数(神奈川県・2012年)",
+    "category": "事業者",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "business_employees",
+    "name": "従業者数(神奈川県・2012年)",
+    "category": "事業者",
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "business_density",
+    "name": "1km²当たり事業所数(神奈川県・2012年)",
+    "category": "事業者",
+    "success": true,
+    "error": null
+  }
+]

@@ -1,0 +1,202 @@
+# 神奈川県ダッシュボードで取得する統計指標(e-Stat API)
+#
+# 各 indicator の取得方法 — 以下のいずれか:
+#   (a) statsDataId を直接指定: 確実に同じ表を引く(推奨)
+#   (b) statsCode + titleMatch: 統計コード配下の表を正規表現で発見(最終更新が新しいもの)
+#
+# filters: getStatsData の絞り込み(cdArea, cdCat01, cdTab, cdTime など)
+# scale:   表示時に乗算する倍率(例: 0.001 で千→万単位、人→千人など)
+# unit:    表示単位
+# chart:   line | bar
+#
+# 統計表IDが新調査で変わった場合は、API一覧で確認後に書き換えてください。
+
+prefecture_code: "14000"  # 神奈川県(都道府県コード)
+prefecture_code_short: "14"
+
+indicators:
+  # ─────────────────────────────────────────────
+  # 人口
+  # ─────────────────────────────────────────────
+  - id: population_total
+    name: "総人口(神奈川県)"
+    category: "人口"
+    description: "人口推計(年次)、男女計・総人口"
+    source: "総務省統計局 人口推計"
+    statsCode: "00200524"
+    titleMatch: "都道府県.*男女別人口及び人口性比"
+    filters:
+      cdArea: "14000"
+      cdCat01: "001"   # 男女計
+      cdCat02: "001"   # 総人口
+    chart: line
+    unit: "百万人"
+    scale: 0.001
+
+  - id: population_male
+    name: "男性人口(神奈川県)"
+    category: "人口"
+    description: "人口推計(年次)、男性・総人口"
+    source: "総務省統計局 人口推計"
+    statsCode: "00200524"
+    titleMatch: "都道府県.*男女別人口及び人口性比"
+    filters:
+      cdArea: "14000"
+      cdCat01: "002"   # 男
+      cdCat02: "001"   # 総人口
+    chart: line
+    unit: "百万人"
+    scale: 0.001
+
+  - id: population_female
+    name: "女性人口(神奈川県)"
+    category: "人口"
+    description: "人口推計(年次)、女性・総人口"
+    source: "総務省統計局 人口推計"
+    statsCode: "00200524"
+    titleMatch: "都道府県.*男女別人口及び人口性比"
+    filters:
+      cdArea: "14000"
+      cdCat01: "003"   # 女
+      cdCat02: "001"   # 総人口
+    chart: line
+    unit: "百万人"
+    scale: 0.001
+
+  # ─────────────────────────────────────────────
+  # 人口動態(出生・死亡・婚姻)
+  # ─────────────────────────────────────────────
+  - id: births
+    name: "出生数(神奈川県)"
+    category: "人口動態"
+    description: "人口動態調査(年次)"
+    source: "厚生労働省 人口動態調査"
+    statsDataId: "0003411564"
+    filters:
+      cdArea: "14000"
+      cdCat01: "100"   # 出生数
+    chart: bar
+    unit: "人"
+
+  - id: deaths
+    name: "死亡数(神奈川県)"
+    category: "人口動態"
+    description: "人口動態調査(年次)"
+    source: "厚生労働省 人口動態調査"
+    statsDataId: "0003411564"
+    filters:
+      cdArea: "14000"
+      cdCat01: "120"   # 死亡数
+    chart: bar
+    unit: "人"
+
+  - id: stillbirths
+    name: "自然死産数(神奈川県)"
+    category: "人口動態"
+    description: "人口動態調査(年次)"
+    source: "厚生労働省 人口動態調査"
+    statsDataId: "0003411564"
+    filters:
+      cdArea: "14000"
+      cdCat01: "150"   # 自然死産数
+    chart: bar
+    unit: "人"
+
+  - id: perinatal_deaths
+    name: "周産期死亡数(神奈川県)"
+    category: "人口動態"
+    description: "人口動態調査(年次)"
+    source: "厚生労働省 人口動態調査"
+    statsDataId: "0003411564"
+    filters:
+      cdArea: "14000"
+      cdCat01: "170"   # 周産期死亡数
+    chart: bar
+    unit: "人"
+
+  # ─────────────────────────────────────────────
+  # 人口移動(月次)
+  # ─────────────────────────────────────────────
+  - id: migration_in
+    name: "転入者数(神奈川県・月次)"
+    category: "人口移動"
+    description: "他都道府県からの転入者数(住基ベース、月次)"
+    source: "総務省統計局 住民基本台帳人口移動報告"
+    statsCode: "00200523"
+    titleMatch: "他都道府県からの転入者数及び他都道府県への転出者数"
+    filters:
+      cdArea: "14000"
+    chart: line
+    unit: "人"
+
+  # ─────────────────────────────────────────────
+  # 事業者(経済センサス活動調査 2012年)
+  # ─────────────────────────────────────────────
+  - id: business_establishments
+    name: "事業所数(神奈川県・2012年)"
+    category: "事業者"
+    description: "経済センサス‐活動調査(全産業、神奈川県全域)"
+    source: "総務省・経済産業省 経済センサス活動調査"
+    statsDataId: "0003085552"
+    filters:
+      cdTab: "832"     # 事業所数
+      cdCat01: "14000" # 神奈川県(この表ではcat01が地域コード)
+    chart: bar
+    unit: "事業所"
+
+  - id: business_employees
+    name: "従業者数(神奈川県・2012年)"
+    category: "事業者"
+    description: "経済センサス‐活動調査(従業者数 総数、神奈川県全域)"
+    source: "総務省・経済産業省 経済センサス活動調査"
+    statsDataId: "0003085552"
+    filters:
+      cdTab: "833"     # 従業者数 総数
+      cdCat01: "14000"
+    chart: bar
+    unit: "千人"
+    scale: 0.001
+
+  - id: business_density
+    name: "1km²当たり事業所数(神奈川県・2012年)"
+    category: "事業者"
+    description: "経済センサス‐活動調査(密度指標)"
+    source: "総務省・経済産業省 経済センサス活動調査"
+    statsDataId: "0003085552"
+    filters:
+      cdTab: "837"     # 1km2当たり事業所数
+      cdCat01: "14000"
+    chart: bar
+    unit: "事業所/km²"
+
+# ─────────────────────────────────────────────
+# 外部リンク集(神奈川県統計センター等、APIで取れない情報源)
+# ─────────────────────────────────────────────
+external_links:
+  - title: "神奈川県統計センター"
+    url: "https://www.pref.kanagawa.jp/docs/x6z/index.html"
+    description: "神奈川県の統計情報ポータル"
+  - title: "神奈川県の人口と世帯(月次)"
+    url: "https://www.pref.kanagawa.jp/docs/x6t/index.html"
+    description: "神奈川県人口統計調査"
+  - title: "神奈川県県民経済計算"
+    url: "https://www.pref.kanagawa.jp/docs/x6z/cnt/f7022/index.html"
+    description: "神奈川県の県内総生産・県民所得"
+  - title: "神奈川県の事業所(経済センサス)"
+    url: "https://www.pref.kanagawa.jp/docs/x6z/cnt/f534984/index.html"
+    description: "経済センサスの神奈川県結果"
+  - title: "神奈川労働局 雇用統計"
+    url: "https://jsite.mhlw.go.jp/kanagawa-roudou/"
+    description: "有効求人倍率・雇用情勢"
+  - title: "横浜市の統計"
+    url: "https://www.city.yokohama.lg.jp/city-info/yokohamashi/tokei-chosa/"
+    description: "横浜市の統計データ"
+  - title: "川崎市の統計情報"
+    url: "https://www.city.kawasaki.jp/170/page/0000005903.html"
+    description: "川崎市の統計データ"
+  - title: "e-Stat 政府統計の総合窓口"
+    url: "https://www.e-stat.go.jp/"
+    description: "全統計のメタデータ・データダウンロード"
+  - title: "RESAS(地域経済分析システム)"
+    url: "https://resas.go.jp/"
+    description: "地域経済の可視化ツール(神奈川県/市区町村別)"

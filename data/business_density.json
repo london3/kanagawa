@@ -1,0 +1,20 @@
+{
+  "id": "business_density",
+  "name": "1km²当たり事業所数(神奈川県・2012年)",
+  "category": "事業者",
+  "description": "経済センサス‐活動調査(密度指標)",
+  "source": "総務省・経済産業省 経済センサス活動調査",
+  "chart": "bar",
+  "unit": "事業所/km²",
+  "labels": [
+    "2012年"
+  ],
+  "values": [
+    120.3
+  ],
+  "table_title": "民営事業所数，男女別従業者数及び1km2当たり事業所数及び従業者数－全国，都道府県，市区町村，大都市圏",
+  "stats_data_id": "0003085552",
+  "updated": "2026-01-16",
+  "source_url": "https://www.e-stat.go.jp/dbview?sid=0003085552",
+  "raw_count": 1
+}

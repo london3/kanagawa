@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神奈川県ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>神奈川県ダッシュボード</h1>
+    <p class="subtitle">e-Stat APIによる主要統計の自動集計 / Last updated: <strong>{{ generated_at }}</strong></p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="kpis">
+    {% for ind in indicators if ind.success %}
+    <div class="kpi-card">
+      <div class="kpi-label">{{ ind.payload.name }}</div>
+      <div class="kpi-value">{{ ind.latest_value }}<span class="kpi-unit"> {{ ind.payload.unit }}</span></div>
+      <div class="kpi-meta">{{ ind.latest_label }}</div>
+    </div>
+    {% endfor %}
+  </section>
+
+  {% for category, group in indicators_by_category.items() %}
+  <section class="category-section">
+    <h2>{{ category }}</h2>
+    <div class="chart-grid">
+      {% for ind in group if ind.success %}
+      <div class="chart-card">
+        <header class="chart-header">
+          <h3>{{ ind.payload.name }}</h3>
+          <p class="chart-desc">{{ ind.payload.description }}</p>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="chart-{{ ind.id }}"></canvas>
+        </div>
+        <footer class="chart-footer">
+          <span>出典: <a href="{{ ind.payload.source_url }}" target="_blank" rel="noopener">{{ ind.payload.source }}</a></span>
+          <span class="chart-updated">更新: {{ ind.payload.updated }}</span>
+        </footer>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+
+  {% if failed %}
+  <section class="failed-section">
+    <h2>取得エラー</h2>
+    <p class="caveat">下記指標は今回取得に失敗しました。次回更新で自動再試行されます(stats.yaml の <code>titleMatch</code> 調整で改善する場合があります)。</p>
+    <ul>
+      {% for f in failed %}
+      <li><strong>{{ f.name }}</strong>({{ f.category }}) — {{ f.error }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section class="links-section">
+    <h2>関連リンク</h2>
+    <ul class="links-list">
+      {% for link in external_links %}
+      <li>
+        <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+        <span class="link-desc">{{ link.description }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>データ: e-Stat政府統計の総合窓口、神奈川県統計センター 他 / 自動更新: 毎月1日</p>
+    <p>本ページの数値はAPI取得時点のものです。最新の正確な値は各出典でご確認ください。</p>
+  </div>
+</footer>
+
+<script>
+const CHART_DATA = {{ chart_data_json | safe }};
+
+function buildChart(id, payload) {
+  const ctx = document.getElementById('chart-' + id);
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: payload.chart || 'line',
+    data: {
+      labels: payload.labels,
+      datasets: [{
+        label: payload.name,
+        data: payload.values,
+        borderColor: '#0a4f8c',
+        backgroundColor: payload.chart === 'bar' ? 'rgba(10,79,140,0.6)' : 'rgba(10,79,140,0.12)',
+        borderWidth: 2,
+        tension: 0.2,
+        pointRadius: payload.values.length > 30 ? 0 : 2,
+        fill: payload.chart !== 'bar',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => c.formattedValue + ' ' + (payload.unit || '')
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
+        y: { ticks: { callback: (v) => v.toLocaleString() } }
+      }
+    }
+  });
+}
+
+Object.entries(CHART_DATA).forEach(([id, payload]) => buildChart(id, payload));
+</script>
+</body>
+</html>
