@@ -94,6 +94,7 @@ def main() -> int:
         chart_data_json=json.dumps(chart_data, ensure_ascii=False),
         failed=failed,
         external_links=config.get("external_links", []),
+        japan_dashboard=config.get("japan_dashboard"),
     )
 
     DOCS_DIR.mkdir(parents=True, exist_ok=True)

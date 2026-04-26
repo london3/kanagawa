@@ -170,6 +170,38 @@ indicators:
     unit: "事業所/km²"
 
 # ─────────────────────────────────────────────
+# Japan Dashboard 連携(内閣府デジタル庁、約700指標)
+# ─────────────────────────────────────────────
+japan_dashboard:
+  parent_url: "https://www.digital.go.jp/resources/japandashboard/economy-fiscal-living-prefecture#economy"
+  embed:
+    title: "Japan Dashboard:1つの指標を都道府県ごとにみる"
+    description: "ダッシュボード上で「神奈川県」を選択すると約700指標の値・地図・グラフが表示されます。"
+    url: "https://app.powerbi.com/view?r=eyJrIjoiOGY0Yzk0ZjItYWE5ZC00OTY4LTljYWEtMzk1ZWVjNzgwOGY5IiwidCI6IjA2ZTRhMGZmLTQ5NzItNGE4Yi1hZjMwLTQ1NzEzNjFkMTM0NCJ9&pageName=e11e5d544149eee54058"
+  links:
+    - title: "指標のデータをみる"
+      description: "約700指標の収録期間・出所一覧"
+      url: "https://app.powerbi.com/view?r=eyJrIjoiOGY0Yzk0ZjItYWE5ZC00OTY4LTljYWEtMzk1ZWVjNzgwOGY5IiwidCI6IjA2ZTRhMGZmLTQ5NzItNGE4Yi1hZjMwLTQ1NzEzNjFkMTM0NCJ9&pageName=a819a27a34d8afc40207"
+    - title: "2つの指標の関係性をみる"
+      description: "任意2指標を散布図で相関確認"
+      url: "https://app.powerbi.com/view?r=eyJrIjoiOGY0Yzk0ZjItYWE5ZC00OTY4LTljYWEtMzk1ZWVjNzgwOGY5IiwidCI6IjA2ZTRhMGZmLTQ5NzItNGE4Yi1hZjMwLTQ1NzEzNjFkMTM0NCJ9&pageName=619c403b17d981a8cbc8"
+    - title: "4つの指標の推移を並べてみる"
+      description: "最大4指標の時系列を地域比較"
+      url: "https://app.powerbi.com/view?r=eyJrIjoiOGY0Yzk0ZjItYWE5ZC00OTY4LTljYWEtMzk1ZWVjNzgwOGY5IiwidCI6IjA2ZTRhMGZmLTQ5NzItNGE4Yi1hZjMwLTQ1NzEzNjFkMTM0NCJ9&pageName=119ca36228222a8b2b56"
+    - title: "1指標のデータをコピー"
+      description: "任意指標の数値表をコピー出力"
+      url: "https://app.powerbi.com/view?r=eyJrIjoiOGY0Yzk0ZjItYWE5ZC00OTY4LTljYWEtMzk1ZWVjNzgwOGY5IiwidCI6IjA2ZTRhMGZmLTQ5NzItNGE4Yi1hZjMwLTQ1NzEzNjFkMTM0NCJ9&pageName=c2d2b9549908e6940077"
+    - title: "複数指標を一括ダウンロード(Tableau)"
+      description: "指標・期間・都道府県を選んでCSVダウンロード"
+      url: "https://public.tableau.com/views/_17454619273030/JapanDashboard?:showVizHome=no&:embed=true"
+    - title: "市区町村ごとのダッシュボード"
+      description: "横浜市・川崎市など市区町村レベルの指標"
+      url: "https://www.digital.go.jp/resources/japandashboard/economy-fiscal-living-municipality"
+    - title: "見方と操作方法"
+      description: "Japan Dashboard 公式ガイド(動画付き)"
+      url: "https://www.digital.go.jp/resources/japandashboard/economy-fiscal-living-prefecture/guidance"
+
+# ─────────────────────────────────────────────
 # 外部リンク集(神奈川県統計センター等、APIで取れない情報源)
 # ─────────────────────────────────────────────
 external_links:

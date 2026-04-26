@@ -50,6 +50,43 @@
   </section>
   {% endfor %}
 
+  {% if japan_dashboard %}
+  <section class="japan-dashboard-section">
+    <h2>Japan Dashboard 連携</h2>
+    <p class="section-intro">
+      内閣府デジタル庁が公開する<a href="{{ japan_dashboard.parent_url }}" target="_blank" rel="noopener">経済・財政・人口と暮らし(都道府県ごと)に関するダッシュボード</a>
+      には約700指標が収録されており、本ページの指標を補完します。下のフレームでフィルタを「神奈川県」に切り替えて活用してください。
+    </p>
+
+    <div class="embed-card">
+      <div class="embed-header">
+        <h3>{{ japan_dashboard.embed.title }}</h3>
+        <p>{{ japan_dashboard.embed.description }}</p>
+      </div>
+      <div class="embed-frame">
+        <iframe
+          src="{{ japan_dashboard.embed.url }}"
+          title="{{ japan_dashboard.embed.title }}"
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+      <div class="embed-footer">
+        <a href="{{ japan_dashboard.embed.url }}" target="_blank" rel="noopener">全画面で開く ↗</a>
+      </div>
+    </div>
+
+    <h3 class="subgroup-h">関連ダッシュボード・データカタログ</h3>
+    <ul class="links-list">
+      {% for link in japan_dashboard.links %}
+      <li>
+        <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+        <span class="link-desc">{{ link.description }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   {% if failed %}
   <section class="failed-section">
     <h2>取得エラー</h2>
